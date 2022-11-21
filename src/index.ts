@@ -1,6 +1,6 @@
 import { renderSearchFormBlock } from './search-form.js'
 import { renderSearchStubBlock } from './search-results.js'
-import { renderUserBlock } from './user.js'
+import { renderUserBlock, User } from './user.js'
 import { renderToast } from './lib.js'
 
 const randomFavoriteItem = Math.floor(Math.random() * 10) + 1;

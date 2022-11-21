@@ -1,3 +1,5 @@
+import {User} from "./user";
+
 export const getDateStart = (date: Date): Date => {
   const dateCheckIn: Date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
   return dateCheckIn;

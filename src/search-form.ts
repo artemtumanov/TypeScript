@@ -1,13 +1,42 @@
 import {renderBlock} from './lib.js';
 import {getDateStart, getDateEnd, convertDate, increaseDate} from './utilites.js';
 
-const initDateStart:Date = increaseDate(new Date(), 1);
-const initDateEnd:Date = getDateEnd(initDateStart);
+interface SearchFormData {
+  dateStart?: Date
+  dateEnd?: Date
+  maxPrice?: number
+}
 
-export function renderSearchFormBlock(dateStart: Date = initDateStart, dateEnd: Date = initDateEnd) {
-  const dateStartFunc:Date = getDateStart(dateStart);
-  const dateEndFunc:Date = getDateStart(dateStartFunc);
-  const dateMaxEndFunc:Date = increaseDate(getDateEnd(dateStart), 1);
+const submitFormSearch = (event: Event): void => {
+  event.preventDefault()
+  const checkIn: Date = new Date(document.querySelector("input[name='checkin']")['value'])
+  const checkOut: Date = new Date(document.querySelector("input[name='checkout']")['value'])
+  const price: number = +document.querySelector("input[name='price']")['value']
+
+  const resultSearchFormData: SearchFormData = {
+    dateStart: checkIn,
+    dateEnd: checkOut,
+    maxPrice: price
+  }
+
+  console.log(resultSearchFormData)
+}
+
+const initDateStart: Date = increaseDate(new Date(), 1);
+const initDateEnd: Date = getDateEnd(initDateStart);
+const initPrice: number = 0;
+
+const initDateSearchFormBlock: SearchFormData = {
+  dateStart: initDateStart,
+  dateEnd: initDateEnd,
+  maxPrice: initPrice
+}
+
+export function renderSearchFormBlock(data: SearchFormData = initDateSearchFormBlock) {
+  let dateStartFunc: Date = getDateStart(data.dateStart);
+  let dateEndFunc: Date = getDateStart(dateStartFunc);
+  let dateMaxEndFunc: Date = increaseDate(getDateEnd(data.dateStart), 1);
+  let maxDate: number = 0;
 
   renderBlock(
     'search-form-block',
@@ -50,7 +79,12 @@ export function renderSearchFormBlock(dateStart: Date = initDateStart, dateEnd: 
               </div>
               <div>
                 <label for="max-price">Макс. цена суток</label>
-                <input id="max-price" type="text" value="" name="price" class="max-price" />
+                <input 
+                    id="max-price" 
+                    type="text" 
+                    value=${maxDate}
+                    name="price" 
+                    class="max-price" />
               </div>
               <div>
                 <div><button>Найти</button></div>
@@ -61,3 +95,14 @@ export function renderSearchFormBlock(dateStart: Date = initDateStart, dateEnd: 
     `
   )
 }
+
+const submitListener = ():void => {
+  const form = document.getElementById('search-form-block')
+  try {
+    form.addEventListener('submit', submitFormSearch)
+  } catch (err) {
+    console.log(`элемент form не найден -> ${err}`)
+  }
+}
+
+submitListener()
