@@ -10,12 +10,14 @@
     "start:devExample": "http-server -p 3000",
     "lint": "eslint src --ext .js --ext .ts",
     "lint-fix": "eslint src --ext .js --ext .ts --fix"
+
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/artemtumanov/TypeScript.git"
   },
   "author": "Артем Туманов",
+
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/artemtumanov/TypeScript/issues"
