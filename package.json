@@ -6,7 +6,7 @@
   "scripts": {
     "build": " rd -r public\\scripts 2>null & tsc",
     "build:dev": "rd -r public\\scripts 2>null & tsc -p tsconfig-dev.json",
-    "start": "node public/scripts/index.js",
+    "start": "http-server -p 3000",
     "start:devExample": "http-server -p 3000",
     "lint": "eslint src --ext .js --ext .ts",
     "lint-fix": "eslint src --ext .js --ext .ts --fix"
