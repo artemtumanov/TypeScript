@@ -11,7 +11,6 @@ export const getDateEnd = (dateStart: Date): Date => {
 }
 
 export const convertDate = (date:Date):string => {
-  console.log(`convertDate(${date}) => ${date.toISOString().slice(0, 10)}`);
   return date.toISOString().slice(0, 10);
 }
 
@@ -20,3 +19,11 @@ export const increaseDate = (date:Date, num:number):Date => {
   return newDate;
 }
 
+export interface Place {
+  id: number;
+  image: string;
+  name: string;
+  description: string;
+  bookedDates: number[];
+  price: number;
+}

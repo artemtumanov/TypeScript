@@ -1,12 +1,14 @@
 import {renderBlock} from './lib.js';
 import {getDateStart, getDateEnd, convertDate, increaseDate} from './utilites.js';
 
+//2. Создать интерфейс SearchFormData
 interface SearchFormData {
   dateStart?: Date
   dateEnd?: Date
   maxPrice?: number
 }
 
+//2. Написать функцию-обработчик формы search
 const submitFormSearch = (event: Event): void => {
   event.preventDefault()
   const checkIn: Date = new Date(document.querySelector("input[name='checkin']")['value'])
@@ -22,6 +24,7 @@ const submitFormSearch = (event: Event): void => {
   console.log(resultSearchFormData)
 }
 
+//инициализация данных формы поиска
 const initDateStart: Date = increaseDate(new Date(), 1);
 const initDateEnd: Date = getDateEnd(initDateStart);
 const initPrice: number = 0;
@@ -32,6 +35,7 @@ const initDateSearchFormBlock: SearchFormData = {
   maxPrice: initPrice
 }
 
+//2. Функция поиска принимает как аргумент переменную интерфейса SearchFormData
 export function renderSearchFormBlock(data: SearchFormData = initDateSearchFormBlock) {
   let dateStartFunc: Date = getDateStart(data.dateStart);
   let dateEndFunc: Date = getDateStart(dateStartFunc);
@@ -87,7 +91,9 @@ export function renderSearchFormBlock(data: SearchFormData = initDateSearchFormB
                     class="max-price" />
               </div>
               <div>
-                <div><button>Найти</button></div>
+                <div>
+                    <button>Найти</button>
+                </div>
               </div>
           </div>
       </fieldset>
@@ -96,6 +102,7 @@ export function renderSearchFormBlock(data: SearchFormData = initDateSearchFormB
   )
 }
 
+//отслеживание нажатия кнопки формы поиска
 const submitListener = ():void => {
   const form = document.getElementById('search-form-block')
   try {
