@@ -1,0 +1,18 @@
+# Корневой файл EditorConfig
+root = true
+
+# Для всех файлов используем unix-совместимые переносы строк
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+# отступы в 2 пробела
+[*.{js,ts}]
+indent_style = space
+indent_size = 2
+
+# отступы в 2 пробела
+[{package.json,tsconfig*.json}]
+indent_style = space
+indent_size = 2
